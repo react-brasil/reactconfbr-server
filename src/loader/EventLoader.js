@@ -112,6 +112,12 @@ export const loadEvents = async (context: GraphQLContext, args: ConnectionArgume
     };
   }
 
+  if (args.days) {
+    conditions = {
+      ...conditions,
+    };
+  }
+
   const events = EventModel.find(conditions).sort({ createdAt: -1 });
 
   return connectionFromMongoCursor({
